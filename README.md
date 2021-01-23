@@ -7,7 +7,10 @@
 	- ~~c-sharp-CRC-ITU~~
 	
 	
-	
+```js
+const [counter, setCounter] = useState(0);
+```
+
 ## Heading 2
 	
 > blockquote
@@ -26,6 +29,8 @@
 ---
 
 ![alt csharp]("https://commons.wikimedia.org/wiki/File:C_Sharp_logo.png")
+
+![alt text](https://commons.wikimedia.org/wiki/File:C_Sharp_logo.png)
 
 
 
