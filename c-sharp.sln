@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c-sharp-redis", "c-sharp-re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c-sharp-CRC-ITU", "c-sharp-CRC-ITU\c-sharp-CRC-ITU.csproj", "{1A885EE7-14D5-4D9A-85DA-683B8F7AA74F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c-sharp-win-service-with-multi-thread", "c-sharp-win-service-with-multi-thread\c-sharp-win-service-with-multi-thread.csproj", "{AB506CB6-70B4-4C88-BB27-D001A05B48B8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1A885EE7-14D5-4D9A-85DA-683B8F7AA74F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A885EE7-14D5-4D9A-85DA-683B8F7AA74F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A885EE7-14D5-4D9A-85DA-683B8F7AA74F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB506CB6-70B4-4C88-BB27-D001A05B48B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB506CB6-70B4-4C88-BB27-D001A05B48B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB506CB6-70B4-4C88-BB27-D001A05B48B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB506CB6-70B4-4C88-BB27-D001A05B48B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
