@@ -6,10 +6,6 @@
 	- c-sharp-win-service-with-multi-trhread
 	- ~~c-sharp-CRC-ITU~~
 	
-	
-```js
-const [counter, setCounter] = useState(0);
-```
 
 ## Heading 2
 	
@@ -26,11 +22,13 @@ const [counter, setCounter] = useState(0);
 
 `code`
 
+```js
+const [counter, setCounter] = useState(0);
+```
+
 ---
 
-![alt csharp]("https://upload.wikimedia.org/wikipedia/commons/8/82/C_Sharp_logo.png")
-
-![alt text](https://upload.wikimedia.org/wikipedia/commons/8/82/C_Sharp_logo.png)
+![alt text](https://upload.wikimedia.org/wikipedia/commons/8/82/C_Sharp_logo.png | width=100)
 
 
 
