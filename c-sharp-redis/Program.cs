@@ -11,6 +11,7 @@ namespace c_sharp_redis
         static void Main(string[] args)
         {
             Console.WriteLine("Hi there .");
+            // test git
         }
     }
 }
