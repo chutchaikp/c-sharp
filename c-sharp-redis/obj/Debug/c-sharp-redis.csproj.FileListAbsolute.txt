@@ -1,1 +1,0 @@
-D:\DEV\c-sharp\c-sharp-redis\bin\Debug\c-sharp-redis.exe.config
