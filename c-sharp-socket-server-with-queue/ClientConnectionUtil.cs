@@ -37,7 +37,7 @@ namespace c_sharp_socket_server_with_queue
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        const int NUM_OF_THREAD = 2; // 20
+        const int NUM_OF_THREAD = 20; // 
 
         private ClientConnectionPool ConnectionPool;
         private bool ContinueProcess = false;
