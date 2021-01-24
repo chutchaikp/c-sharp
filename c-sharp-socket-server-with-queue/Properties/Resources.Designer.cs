@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace c_sharp_socket_server.Properties
+namespace c_sharp_socket_server_with_queue.Properties
 {
 
 
@@ -42,7 +42,7 @@ namespace c_sharp_socket_server.Properties
             get {
                 if ((resourceMan == null))
                 {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("c_sharp_socket_server.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("c_sharp_socket_server_with_queue.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

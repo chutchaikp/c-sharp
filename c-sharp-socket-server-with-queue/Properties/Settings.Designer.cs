@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace c_sharp_socket_server.Properties
+namespace c_sharp_socket_server_with_queue.Properties
 {
 
 

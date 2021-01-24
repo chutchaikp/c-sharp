@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("c-sharp-socket-server")]
+[assembly: AssemblyTitle("c-sharp-socket-server-with-queue")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("c-sharp-socket-server")]
+[assembly: AssemblyProduct("c-sharp-socket-server-with-queue")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("3a3f6723-7c05-427a-8160-431391057c38")]
+[assembly: Guid("0e31faba-65b8-4c9f-b8ff-d0f755c7f5ee")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -34,3 +34,8 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+
+
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+

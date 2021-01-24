@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -12,20 +13,34 @@ namespace c_sharp_socket_client
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
+        public static string PROTOCOL;
+        public static string SERVER_ADDRESS;
+        public static int SERVER_PORT;
+        public static int BUFFER_SIZE;
+
         static void Main(string[] args)
         {
-            // Udp();
+            PROTOCOL = ConfigurationManager.AppSettings["PROTOCOL"];
+            SERVER_ADDRESS = ConfigurationManager.AppSettings["SERVER_ADDRESS"];
+            SERVER_PORT = Convert.ToInt32(ConfigurationManager.AppSettings["SERVER_PORT"]);
+            BUFFER_SIZE = Convert.ToInt32(ConfigurationManager.AppSettings["BUFFER_SIZE"]);
 
-            // TODO TCP
-            Tcp();
+            if (PROTOCOL == "UDP")
+            {
+                Udp();
+            }
+            else if (PROTOCOL == "TCP")
+            {
+                Tcp();
+            }
         }
 
         static void Udp()
         {
             try
             {
-                IPAddress tmpIp = IPAddress.Parse("127.0.0.1"); 
-                IPEndPoint tmpIep = new IPEndPoint(tmpIp, 1722);
+                IPAddress tmpIp = IPAddress.Parse(SERVER_ADDRESS); 
+                IPEndPoint tmpIep = new IPEndPoint(tmpIp, SERVER_PORT);
                 Socket tmpSocketServerUdp = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
                 while (true)
@@ -36,6 +51,7 @@ namespace c_sharp_socket_client
                         var msgs = user.ToJSON();
                         byte[] tmpBytes = Encoding.ASCII.GetBytes(msgs);
                         var tmpResult = tmpSocketServerUdp.SendTo(tmpBytes, tmpBytes.Length, SocketFlags.None, tmpIep);
+
                         //tmpSocketServerUdp.Close();                    
                         //tmpSocketServerUdp = null;        
 
