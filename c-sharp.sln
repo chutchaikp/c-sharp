@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c-sharp-socket-client", "c-
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c-sharp-socket-server-with-queue", "c-sharp-socket-server-with-queue\c-sharp-socket-server-with-queue.csproj", "{0E31FABA-65B8-4C9F-B8FF-D0F755C7F5EE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "c-sharp-queue", "c-sharp-queue\c-sharp-queue.csproj", "{691031EC-5A82-4B34-B3CD-760908C626E8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{0E31FABA-65B8-4C9F-B8FF-D0F755C7F5EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E31FABA-65B8-4C9F-B8FF-D0F755C7F5EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E31FABA-65B8-4C9F-B8FF-D0F755C7F5EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{691031EC-5A82-4B34-B3CD-760908C626E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{691031EC-5A82-4B34-B3CD-760908C626E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{691031EC-5A82-4B34-B3CD-760908C626E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{691031EC-5A82-4B34-B3CD-760908C626E8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
