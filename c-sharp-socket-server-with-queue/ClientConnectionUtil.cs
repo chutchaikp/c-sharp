@@ -37,7 +37,7 @@ namespace c_sharp_socket_server_with_queue
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        const int NUM_OF_THREAD = 20; // 
+        const int NUM_OF_THREAD = 1; // 
 
         private ClientConnectionPool ConnectionPool;
         private bool ContinueProcess = false;
@@ -61,34 +61,43 @@ namespace c_sharp_socket_server_with_queue
 
         private void Process()
         {
-            while (ContinueProcess)
+            try
             {
-                ClientHandler client = null;
-                lock (ConnectionPool.SyncRoot)
+                while (ContinueProcess)
                 {
-                    if (ConnectionPool.Count > 0)
+
+                    ClientHandler client = null;
+                    lock (ConnectionPool.SyncRoot)
                     {
-                        //if (Program.PROTOCOL == "TCP")
-                        //{
-                        //    client = (TCPClientHandler)ConnectionPool.Dequeue();
-                        //}
-                        if (Program.PROTOCOL == "UDP")
+                        if (ConnectionPool.Count > 0)
                         {
-                            client = (UDPClientHandler)ConnectionPool.Dequeue();
+                            if (Program.PROTOCOL == "TCP")
+                            {
+                                client = (TCPClientHandler)ConnectionPool.Dequeue();
+                            }
+                            if (Program.PROTOCOL == "UDP")
+                            {
+                                client = (UDPClientHandler)ConnectionPool.Dequeue();
+                            }
                         }
                     }
-                }
-                
-                if (client != null)
-                {
-                    client.Process(); // Provoke client
-                    // if client still connect, schedul for later processingle it 
-                    if (client.IsAlive())
-                        ConnectionPool.Enqueue(client);
-                }
 
-                // Cause App running slowly // Thread.Sleep(5000);
-                Thread.Sleep(100);
+                    if (client != null)
+                    {
+                        client.Process(); // Provoke client
+                                          // if client still connect, schedufor later processingle it 
+                        if (client.IsAlive())
+                        {
+                            ConnectionPool.Enqueue(client);
+                        }
+                    }
+                    
+                    Thread.Sleep(100);                    
+                }
+            }
+            catch (Exception _error)
+            {
+                log.Error(_error);
             }
         }
 
@@ -107,10 +116,10 @@ namespace c_sharp_socket_server_with_queue
                 while (ConnectionPool.Count > 0)
                 {
                     ClientHandler client = null;
-                    //if (Program.PROTOCOL == "TCP")
-                    //{
-                    //    client = (TCPClientHandler)ConnectionPool.Dequeue();
-                    //}
+                    if (Program.PROTOCOL == "TCP")
+                    {
+                        client = (TCPClientHandler)ConnectionPool.Dequeue();
+                    }
                     if (Program.PROTOCOL == "UDP")
                     {
                         client = (UDPClientHandler)ConnectionPool.Dequeue();

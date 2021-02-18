@@ -5,8 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace c_sharp_socket_server_with_queue
+namespace c_sharp_thread
 {
+  
     class MockupData
     {
     }

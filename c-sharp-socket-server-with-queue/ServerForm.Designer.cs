@@ -33,12 +33,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblNbConnection = new System.Windows.Forms.Label();
+            this.lblNbRecord = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnExit
             // 
             this.btnExit.Enabled = false;
-            this.btnExit.Location = new System.Drawing.Point(10, 80);
+            this.btnExit.Location = new System.Drawing.Point(4, 114);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(88, 36);
             this.btnExit.TabIndex = 0;
@@ -51,7 +53,7 @@
             this.lblNbReceive.AutoSize = true;
             this.lblNbReceive.Font = new System.Drawing.Font("Monaco", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.lblNbReceive.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblNbReceive.Location = new System.Drawing.Point(120, 9);
+            this.lblNbReceive.Location = new System.Drawing.Point(153, 9);
             this.lblNbReceive.Name = "lblNbReceive";
             this.lblNbReceive.Size = new System.Drawing.Size(21, 29);
             this.lblNbReceive.TabIndex = 1;
@@ -64,9 +66,9 @@
             this.label1.ForeColor = System.Drawing.SystemColors.AppWorkspace;
             this.label1.Location = new System.Drawing.Point(5, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(67, 29);
+            this.label1.Size = new System.Drawing.Size(75, 29);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Receive";
+            this.label1.Text = "Received";
             // 
             // label2
             // 
@@ -84,17 +86,41 @@
             this.lblNbConnection.AutoSize = true;
             this.lblNbConnection.Font = new System.Drawing.Font("Monaco", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.lblNbConnection.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblNbConnection.Location = new System.Drawing.Point(120, 37);
+            this.lblNbConnection.Location = new System.Drawing.Point(153, 37);
             this.lblNbConnection.Name = "lblNbConnection";
             this.lblNbConnection.Size = new System.Drawing.Size(21, 29);
             this.lblNbConnection.TabIndex = 4;
             this.lblNbConnection.Text = "0";
             // 
+            // lblNbRecord
+            // 
+            this.lblNbRecord.AutoSize = true;
+            this.lblNbRecord.Font = new System.Drawing.Font("Monaco", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.lblNbRecord.ForeColor = System.Drawing.Color.OrangeRed;
+            this.lblNbRecord.Location = new System.Drawing.Point(153, 66);
+            this.lblNbRecord.Name = "lblNbRecord";
+            this.lblNbRecord.Size = new System.Drawing.Size(21, 29);
+            this.lblNbRecord.TabIndex = 6;
+            this.lblNbRecord.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Monaco", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.label4.ForeColor = System.Drawing.SystemColors.AppWorkspace;
+            this.label4.Location = new System.Drawing.Point(5, 66);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(77, 29);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Recorded";
+            // 
             // ServerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(171, 128);
+            this.ClientSize = new System.Drawing.Size(223, 162);
+            this.Controls.Add(this.lblNbRecord);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.lblNbConnection);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -114,6 +140,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblNbConnection;
+        private System.Windows.Forms.Label lblNbRecord;
+        private System.Windows.Forms.Label label4;
     }
 }
 

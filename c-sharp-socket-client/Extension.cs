@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 
-namespace c_sharp_socket_client
+namespace c_sharp_socket_server_with_queue
 {
 
     public static class Extensions

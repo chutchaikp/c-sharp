@@ -18,8 +18,12 @@ namespace c_sharp_socket_server_with_queue
         public Thread listeningThread;
 
         public ThreadRecord myThreadRecord;
-        // public TCPSynchronousSocketListener myTCPListener;
+
+        public TCPSynchronousSocketListener myTCPListener;
         public UDPSynchronousSocketListener myUDPListener;
+        public MYSynchronousSocketListener myListener;
+
+
         public ArrayList incomingData = new ArrayList();
 
         public bool DoExit = false;
@@ -29,15 +33,23 @@ namespace c_sharp_socket_server_with_queue
             InitializeComponent();
 
             myThreadRecord = new ThreadRecord(ref incomingData);
-            recordingThread = new Thread(new ThreadStart(myThreadRecord.ThreadLoop));
+            // recordingThread = new Thread(new ThreadStart(myThreadRecord.ThreadLoop));
 
-            if (Program.PROTOCOL == "UDP")
-            {
-                myUDPListener = new UDPSynchronousSocketListener();
-                listeningThread = new Thread(new ThreadStart(myUDPListener.StartListening));
-            }
 
-            // TODO TCP
+            //if (Program.PROTOCOL == "TCP")
+            //{
+            //    myTCPListener = new TCPSynchronousSocketListener();
+            //    listeningThread = new Thread(new ThreadStart(myTCPListener.StartListening));
+            //}
+
+            //if (Program.PROTOCOL == "UDP")
+            //{
+            //    myUDPListener = new UDPSynchronousSocketListener();
+            //    listeningThread = new Thread(new ThreadStart(myUDPListener.StartListening));
+            //}
+
+            myListener = new MYSynchronousSocketListener();
+            listeningThread = new Thread(new ThreadStart(myListener.StartListening));
 
             StartListener();
 
@@ -45,26 +57,62 @@ namespace c_sharp_socket_server_with_queue
 
         void StartListener()
         {
-            recordingThread.Start();
+            // recordingThread.Start();
             listeningThread.Start();
         }
 
-        //private delegate void updateNbConnectionDelegate(object item);
-        //public void updateNbConnection(object value)
-        //{
-        //    try
-        //    {
-        //        if (this.lblNbConnection.InvokeRequired)
-        //        {
-        //            this.lblNbConnection.Invoke(new updateNbConnectionDelegate(this.updateNbConnection), value);
-        //        }
-        //        else
-        //        {
-        //            this.lblNbConnection.Text = value.ToString();
-        //        }
-        //    }
-        //    catch { }
-        //}
+        private delegate void updateNbConnectionDelegate(object item);
+        public void updateNbConnection(object value)
+        {
+            try
+            {
+                if (this.lblNbConnection.InvokeRequired)
+                {
+                    this.lblNbConnection.Invoke(new updateNbConnectionDelegate(this.updateNbConnection), value);
+                }
+                else
+                {
+                    this.lblNbConnection.Text = value.ToString();
+                }
+            }
+            catch { }
+        }
+
+        private delegate void incrementNbRecordDelegate();
+        public void incrementNbRecord()
+        {
+            try
+            {
+                if (this.lblNbRecord.InvokeRequired)
+                {
+                    this.lblNbRecord.Invoke(new incrementNbRecordDelegate(this.incrementNbRecord));
+                }
+                else
+                {
+                    var nb = Convert.ToInt32(this.lblNbRecord.Text) + 1;
+                    this.lblNbRecord.Text = nb.ToString();
+                }
+            }
+            catch { }
+        }
+
+        private delegate void incrementNbReceiveDelegate();
+        public void incrementNbReceive()
+        {
+            try
+            {
+                if (this.lblNbReceive.InvokeRequired)
+                {
+                    this.lblNbReceive.Invoke(new incrementNbReceiveDelegate(this.incrementNbReceive));
+                }
+                else
+                {
+                    var nb = Convert.ToInt32(this.lblNbReceive.Text) + 1;
+                    this.lblNbReceive.Text = nb.ToString();
+                }
+            }
+            catch { }
+        }
 
         private delegate void updateNbReceiveDelegate(object item);
         public void updateNbReceive(object value)

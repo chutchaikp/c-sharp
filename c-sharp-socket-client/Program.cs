@@ -7,7 +7,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace c_sharp_socket_client
+namespace c_sharp_socket_server_with_queue
 {
     class Program
     {
@@ -47,16 +47,17 @@ namespace c_sharp_socket_client
                 {
                     try
                     {
-                        var user = FakeData();
-                        var msgs = user.ToJSON();
-                        byte[] tmpBytes = Encoding.ASCII.GetBytes(msgs);
-                        var tmpResult = tmpSocketServerUdp.SendTo(tmpBytes, tmpBytes.Length, SocketFlags.None, tmpIep);
+                        var users = FakeData(100);
 
-                        //tmpSocketServerUdp.Close();                    
-                        //tmpSocketServerUdp = null;        
+                        foreach (User user in users)
+                        {
+                            var msgs = user.ToJSON();
+                            byte[] tmpBytes = Encoding.ASCII.GetBytes(msgs);
+                            var tmpResult = tmpSocketServerUdp.SendTo(tmpBytes, tmpBytes.Length, SocketFlags.None, tmpIep);
+                            //tmpSocketServerUdp.Close(); //tmpSocketServerUdp = null;        
+                            Console.WriteLine("Send data to the server 127.0.0.1 " + user.FirstName);
+                        }
 
-                        Console.WriteLine("Send data to the server 127.0.0.1 " + user.FirstName);
-                        
                         System.Threading.Thread.Sleep(1000);
                     }
                     catch (Exception err)
@@ -71,57 +72,118 @@ namespace c_sharp_socket_client
                 log.Error(errMain);
             }
         }
-
+        
         static void Tcp()
         {
             try
-            {   
-                IPAddress tmpIp = IPAddress.Parse("127.0.0.1");
-                IPEndPoint tmpIep = new IPEndPoint(tmpIp, 1725); 
-                Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-                while (true)
+            {
+                IPAddress tmpIp = IPAddress.Parse(SERVER_ADDRESS);
+                IPEndPoint remoteEP = new IPEndPoint(tmpIp, SERVER_PORT);
+                List<byte> responseBytes = new List<byte>();
+
+                using (TcpClient client = new TcpClient())
                 {
-                    try
+                    client.Connect(remoteEP);
+                    using (NetworkStream stream = client.GetStream())
                     {
-                        NetworkStream ns = new NetworkStream(server);
                         while (true)
                         {
-                            var input = FakeData().ToJSON();
-                            if (ns.CanWrite)
+                            Console.ReadKey();
+
+                            var inputs = FakeData(2);
+
+                            foreach (User input in inputs)
                             {
-                                ns.Write(Encoding.ASCII.GetBytes(input), 0, input.Length);
-                                ns.Flush();
+                                var requestBytes = Encoding.ASCII.GetBytes(input.ToJSON());
+                                // Send data to server
+                                stream.Write(requestBytes, 0, requestBytes.Length);
                             }
-
-                            System.Threading.Thread.Sleep(1000);
+                            
+                            stream.Flush();
                         }
-
-                        log.Debug("Disconnecting from server...");
                         
-                        ns.Close();
-                        server.Shutdown(SocketShutdown.Both);
-                        server.Close();
-                    }
-                    catch (Exception err)
-                    {
-                        log.Error(err);
-                        Console.WriteLine(err.Message);                        
-                        System.Threading.Thread.Sleep(1000);
+                        // Read data from 
+                        //while (true)
+                        //{
+                        //    byte[] buffer = new byte[1024];
+                        //    int bytesRec = stream.Read(buffer, 0, 1024); // wait here for receive data from the server
+                        //    if (bytesRec == 0)
+                        //    {
+                        //        break;
+                        //    }
+                        //    responseBytes.AddRange(buffer.Take(bytesRec));
+                        //}
                     }
                 }
             }
-            catch (Exception errMain)
+            catch (Exception error)
             {
-                log.Error(errMain);
-                Console.WriteLine(errMain.Message);
-                Console.ReadKey();
+                log.Error(error);
             }
         }
 
-        static User FakeData()
+        static void TcpV2()
+        {
+            TcpClient tcpClient = new TcpClient();
+            try
+            {
+                int portNum = 1777;
+                tcpClient.Connect("database.fleetlocate.asia", portNum);
+                NetworkStream networkStream = tcpClient.GetStream();
+
+                if (networkStream.CanWrite && networkStream.CanRead)
+                {
+                    String DataToSend = "";
+
+                    while (DataToSend != "quit")
+                    {
+                        Console.WriteLine("\nType a text to be sent:");
+                        DataToSend = Console.ReadLine();
+                        if (DataToSend.Length == 0) break;
+
+                        Byte[] sendBytes = Encoding.ASCII.GetBytes(DataToSend);
+                        networkStream.Write(sendBytes, 0, sendBytes.Length);
+
+                        //// Reads the NetworkStream into a byte buffer.
+                        //byte[] bytes = new byte[tcpClient.ReceiveBufferSize];
+                        //int BytesRead = networkStream.Read(bytes, 0, (int)tcpClient.ReceiveBufferSize);
+
+                        //// Returns the data received from the host to the console.
+                        //string returndata = Encoding.ASCII.GetString(bytes, 0, BytesRead);
+                        //Console.WriteLine("This is what the host returned to you: \r\n{0}", returndata);
+                    }
+                    networkStream.Close();
+                    tcpClient.Close();
+                }
+                else if (!networkStream.CanRead)
+                {
+                    Console.WriteLine("You can not write data to this stream");
+                    tcpClient.Close();
+                }
+                else if (!networkStream.CanWrite)
+                {
+                    Console.WriteLine("You can not read data from this stream");
+                    tcpClient.Close();
+                }
+            }
+            catch (SocketException)
+            {
+                Console.WriteLine("Sever not available!");
+            }
+            catch (System.IO.IOException)
+            {
+                Console.WriteLine("Sever not available!");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.ToString());
+            }
+        }
+
+        static List<User> FakeData(int nb)
         {
             FakeData fake = new FakeData();
-            return fake.Data(10);
+            return fake.Data(nb);
         }
     }
 }
