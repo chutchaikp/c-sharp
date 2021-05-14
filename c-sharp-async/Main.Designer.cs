@@ -40,14 +40,16 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Asynchromous programming";
             // 
-            // Form1
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(383, 134);
             this.Controls.Add(this.label1);
-            this.Name = "Form1";
+            this.Name = "Main";
             this.Text = "Asynchromous programming";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_FormClosed);
+            this.Leave += new System.EventHandler(this.Main_Leave);
             this.ResumeLayout(false);
             this.PerformLayout();
 
