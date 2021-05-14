@@ -18,6 +18,8 @@ namespace c_sharp_async
         // C# Async tutorial 
         // https://drive.google.com/drive/folders/1U5AnFwQE6Q5bkYag5Za-iHRmPw4EOj60
 
+            // PAGE 7
+
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
         Thread monitorThread;
